@@ -1,4 +1,6 @@
-import { Entity , Column, PrimaryGeneratedColumn} from "typeorm";
+import { Entity , Column, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import { Pet } from "./pet.entity";
+import { type } from "os";
 
 @Entity()
 export class User{
@@ -7,4 +9,7 @@ export class User{
 
     @Column()
     name: string;
+
+    @OneToMany(type => Pet, pet => pet.owner)
+    pets: Pet[]
 }
